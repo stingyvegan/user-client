@@ -11,6 +11,10 @@ jobs:
           command: |
             npm ci
       - run:
+          name: Run Unit Tests
+          command: |
+            npm t
+      - run:
           name: Build
           command: |
             npm run build
@@ -19,25 +23,12 @@ jobs:
           paths:
             - build/*
             - env.schema.js
-  test:
-    docker:
-      - image: circleci/node:16
-    steps:
-      - checkout
-      - run:
-          name: Run Unit Tests
-          command: |
-            npm t
 
 workflows:
   version: 2
   ci:
     jobs:
       - build:
-          filters:
-            tags:
-              only: /.*/
-      - test:
           filters:
             tags:
               only: /.*/
