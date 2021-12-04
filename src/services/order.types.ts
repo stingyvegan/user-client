@@ -13,6 +13,7 @@ export interface Order {
   orderId: string;
   batchOrders: ReadBatchOrder[];
   orderDate: string;
+  username: string;
 }
 
 export interface WriteBatchOrder {

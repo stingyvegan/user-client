@@ -10,6 +10,7 @@ import requiresAuthorisation from './helpers/requires-authorisation';
 import MyOrders from './pages/my_orders/MyOrders';
 import ProductsPage from './pages/products/ProductsPage';
 import ProductPage from './pages/products/ProductPage';
+import AdminPage from './pages/admin/AdminPage';
 
 function App() {
   const { authDetails } = useContext(AuthContext);
@@ -49,15 +50,15 @@ function App() {
               initialLoad,
             )}
           />
-          {/* <Route
+          <Route
           path='/admin'
           element={requiresAuthorisation(
-            <Admin />,
+            <AdminPage />,
             authDetails.currentAuthenticatedUser,
-            ['admin'],
+            'admin',
             initialLoad,
           )}
-        /> */}
+        />
           <Route path='(/|/profile)' element={<ProfilePage />} />
         </Routes>
         {/* <GoogleAnalytics /> */}

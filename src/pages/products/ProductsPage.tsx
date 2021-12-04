@@ -7,7 +7,7 @@ import useProducts from './useProducts.hooks';
 import ProductCard from './ProductCard';
 
 function ProductsPage() {
-  const [products, error, loading, reload] = useProducts({ active: true });
+  const [products, error, loading, reload] = useProducts({});
 
   return (
     <Fragment>

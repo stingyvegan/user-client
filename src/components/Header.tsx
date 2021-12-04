@@ -1,7 +1,7 @@
 import { Menu, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import authServiceInstance, { AuthState } from '../auth/auth.service';
+import { AuthState } from '../auth/auth.service';
 import { useContext } from 'react';
 import AuthContext from '../contexts/Auth.context';
 import { canAccess } from '../rbac';

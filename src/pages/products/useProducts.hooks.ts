@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import * as productService from '../../services/product.service';
 import { Product } from '../../services/product.types';
 import * as subscriptionService from '../../services/subscription.service';
 
-export interface GetProductFilters {
-  productId?: string;
-}
-
 async function getProducts(
-  filters: GetProductFilters,
+  filters: ProductFilters,
   setProducts: (products: Product[]) => void,
   setError: (error: string | undefined) => void,
   setLoading: (loaded: boolean) => void,
@@ -32,7 +28,6 @@ async function getProducts(
 }
 
 export interface ProductFilters {
-  active: boolean;
   productId?: string;
 }
 
@@ -45,7 +40,7 @@ export default function useProducts(filters: ProductFilters) {
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const { active = true, productId } = filters;
+  const { productId } = filters;
 
   function handleProductEvent(event: ProductEvent) {
     setProducts((existing) =>
@@ -58,10 +53,10 @@ export default function useProducts(filters: ProductFilters) {
     );
   }
 
-  async function reload() {
-    await getProducts(filters, setProducts, setError, setLoading);
+  const reload = useCallback(async () => {
+    await getProducts({ productId }, setProducts, setError, setLoading);
     subscriptionService.subscribe('PRODUCT_CHANGED', handleProductEvent);
-  }
+  }, [productId]);
 
   useEffect(() => {
     reload();
@@ -69,7 +64,7 @@ export default function useProducts(filters: ProductFilters) {
       subscriptionService.unsubscribe('PRODUCT_CHANGED', handleProductEvent);
     }
     return cleanUp;
-  }, [active, productId]);
+  }, [reload]);
 
   return [products, error, loading, reload] as const;
 }

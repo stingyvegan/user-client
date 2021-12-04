@@ -16,12 +16,10 @@ import OrderEditor from './OrderEditor';
 import AuthContext from '../../contexts/Auth.context';
 import { WriteBatchOrder } from '../../services/order.types';
 
-
 export default function ProductPage() {
   const params = useParams();
   const [products, error, loading, reload] = useProducts({
     productId: params.productId,
-    active: false,
   });
   const { authDetails } = useContext(AuthContext);
   const product = products.length === 1 ? products[0] : undefined;

@@ -27,10 +27,10 @@ npm run build
 docker build -t sv-user-client .
 
 # Run the docker container
-docker run --env-file=.env -p 8080:80 sv-user-client
+docker run --env-file=.env -p 3000:80 sv-user-client
 ```
 
-After that your app should be available at http://localhost:8080/
+After that your app should be available at http://localhost:3000/
 
 ## Notes
 
