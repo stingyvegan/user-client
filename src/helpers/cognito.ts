@@ -1,12 +1,11 @@
-import { Role } from '../types/role.types';
+import { Role, RoleName } from '../types/role.types';
 
-export const getRoles = (groupNames: string[]) => {
-  const groupsWithBasic = ['basic', ...groupNames];
+export const getRoles = (groupNames: RoleName[]) => {
+  const groupsWithBasic: RoleName[] = ['basic', ...groupNames];
   return groupsWithBasic.map((r) => roleDetails(r));
 };
 
-
-export function roleDetails(groupName: string): Role {
+export function roleDetails(groupName: RoleName): Role {
   let details = {
     key: groupName,
   };

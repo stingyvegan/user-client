@@ -1,5 +1,6 @@
 import { Auth } from '@aws-amplify/auth';
 import { BehaviorSubject } from 'rxjs';
+import { RoleName } from '../types/role.types';
 
 Auth.configure({
   region: window.env.AWS_REGION,
@@ -17,7 +18,7 @@ export type AuthState =
 export interface CurrentAuthenticatedUser {
   name: string;
   isEmailVerified: boolean;
-  groups: string[];
+  groups: RoleName[];
 }
 
 export interface AuthDetails {
@@ -46,7 +47,8 @@ export class AuthService {
     this.handleCompleteAccount = this.handleCompleteAccount.bind(this);
     this.handleStateChange = this.handleStateChange.bind(this);
     this.initialise = this.initialise.bind(this);
-    this.logout = this.logout.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.getBearerToken = this.getBearerToken.bind(this);
     this.subscribe = this.subscribe.bind(this);
   }
 
@@ -77,7 +79,7 @@ export class AuthService {
       next: observer,
     });
   }
-  async logout() {
+  async handleLogout() {
     await Auth.signOut();
   }
   async initialise() {
@@ -182,6 +184,10 @@ export class AuthService {
         });
       }
     }
+  }
+  public async getBearerToken() {
+    const session = await Auth.currentSession();
+    return session.getAccessToken().getJwtToken();
   }
 }
 

@@ -7,11 +7,14 @@ import 'semantic-ui-css/semantic.min.css';
 
 import authServiceInstance from './auth/auth.service';
 import AuthContextProvider from './root_providers/Auth.provider';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider authInstance={authServiceInstance}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),

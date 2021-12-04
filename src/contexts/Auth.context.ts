@@ -5,6 +5,7 @@ export type AuthContextValue = {
   authDetails: AuthDetails;
   handleSignIn: (email: string, password: string) => void;
   handleCompleteAccount: (name: string, password: string) => void;
+  handleLogout: () => void;
 };
 
 const AuthContext = React.createContext<AuthContextValue>({
@@ -14,6 +15,9 @@ const AuthContext = React.createContext<AuthContextValue>({
   },
   handleCompleteAccount: () => {
     throw new Error('handleCompleteAccount called before initialisation');
+  },
+  handleLogout: () => {
+    throw new Error('handleLogout called before initialisation');
   },
 });
 export default AuthContext;

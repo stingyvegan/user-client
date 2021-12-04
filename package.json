@@ -11,11 +11,14 @@
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "axios": "^0.24.0",
     "docker-cra": "^0.1.1",
     "formik": "^2.2.9",
     "joi": "^17.5.0",
+    "pluralize": "^8.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "rxjs": "^7.4.0",
     "semantic-ui-css": "^2.4.1",
@@ -49,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "@danielemeryau/prettier-config": "^0.0.6"
+    "@danielemeryau/prettier-config": "^0.0.6",
+    "@types/pluralize": "^0.0.29"
   }
 }

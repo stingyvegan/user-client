@@ -30,6 +30,7 @@ export default function AuthContextProvider({
     authDetails: authState,
     handleSignIn: authInstance.handleSignIn,
     handleCompleteAccount: authInstance.handleCompleteAccount,
+    handleLogout: authInstance.handleLogout,
   }; 
 
   return (
