@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Loader, Button, Message } from 'semantic-ui-react';
 
 import PageHeading from '../../components/PageHeading';
@@ -29,14 +28,9 @@ function ProductsPage() {
         <Card.Group centered>
           {products.map((product) => {
             return (
-              <Link
-                to={`/product/${product.productId}`}
-                key={product.productId}
-              >
-                <ProductCard {...product}>
-                  <Button>View Product</Button>
-                </ProductCard>
-              </Link>
+              <ProductCard {...product}>
+                <Button>View Product</Button>
+              </ProductCard>
             );
           })}
         </Card.Group>

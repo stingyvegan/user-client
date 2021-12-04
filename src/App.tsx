@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import styled from 'styled-components';
 import { Container, Loader } from 'semantic-ui-react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -12,6 +13,10 @@ import ProductsPage from './pages/products/ProductsPage';
 import ProductPage from './pages/products/ProductPage';
 import AdminPage from './pages/admin/AdminPage';
 
+const PageContainer = styled(Container)`
+  margin-top: 1rem;
+`;
+
 function App() {
   const { authDetails } = useContext(AuthContext);
 
@@ -21,7 +26,7 @@ function App() {
     <>
       <Loader active={initialLoad} />
       <Header loading={initialLoad} />
-      <Container className='page'>
+      <PageContainer className='page'>
         <Routes>
           <Route
             path='/orders'
@@ -51,18 +56,18 @@ function App() {
             )}
           />
           <Route
-          path='/admin'
-          element={requiresAuthorisation(
-            <AdminPage />,
-            authDetails.currentAuthenticatedUser,
-            'admin',
-            initialLoad,
-          )}
-        />
-          <Route path='(/|/profile)' element={<ProfilePage />} />
+            path='/admin'
+            element={requiresAuthorisation(
+              <AdminPage />,
+              authDetails.currentAuthenticatedUser,
+              'admin',
+              initialLoad,
+            )}
+          />
+          <Route path='*' element={<ProfilePage />} />
         </Routes>
         {/* <GoogleAnalytics /> */}
-      </Container>
+      </PageContainer>
     </>
   );
 }
