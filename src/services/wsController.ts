@@ -44,15 +44,15 @@ async function createWebSocket() {
   while (!websocket || websocket.readyState !== WebSocket.OPEN) {
     try {
       if (attempts > 0)
-        console.log(`Websocket connection attempt #${attempts + 1}`);
+        console.info(`Websocket connection attempt #${attempts + 1}`);
       websocket = await tryConnect(bearerToken, '/ws', attempts);
     } catch (e) {}
     attempts += 1;
   }
-  if (attempts > 1) console.log('Websocket connection successful');
+  if (attempts > 1) console.info('Websocket connection successful');
 
   websocket.onclose = function () {
-    console.log('Websocket connection lost');
+    console.warn('Websocket connection lost');
     initialiseWebSocketObservable();
   };
   return websocket;

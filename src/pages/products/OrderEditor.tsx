@@ -48,7 +48,7 @@ export default styled(function OrderEditor(props: OrderEditorProps) {
     product.currentBatch
       ? [
           {
-            batchId: product.currentBatch.batchId || uuidv4(),
+            batchId: product.currentBatch || uuidv4(),
             existingCommitted: product.totalCommitted,
             committed: 0,
           },
@@ -66,9 +66,9 @@ export default styled(function OrderEditor(props: OrderEditorProps) {
   };
 
   const handleAmountChanged = (amount: number) => {
-    setBatchOrders((current) =>
-      updateBatches(current, amount, product.requiredUnits),
-    );
+    setBatchOrders((current) => {
+      return updateBatches(current, amount, product.requiredUnits);
+    });
   };
 
   const batchWarning =
