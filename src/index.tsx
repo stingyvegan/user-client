@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'semantic-ui-css/semantic.min.css';
 
 import authServiceInstance from './auth/auth.service';
 import AuthContextProvider from './root_providers/Auth.provider';

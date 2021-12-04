@@ -5,7 +5,7 @@ import {
   AuthDetails,
   authInitialValue,
 } from '../auth/auth.service';
-import AuthContext from '../contexts/Auth.context';
+import AuthContext, { AuthContextValue } from '../contexts/Auth.context';
 
 export type AuthContextProviderProps = PropsWithChildren<{
   authInstance: AuthService;
@@ -19,7 +19,6 @@ export default function AuthContextProvider({
 
   useEffect(() => {
     const subscription = authInstance.subscribe((authDetails: AuthDetails) => {
-      console.log(authDetails);
       setAuthState(authDetails);
     });
     return () => {
@@ -27,7 +26,13 @@ export default function AuthContextProvider({
     };
   }, [authInstance]);
 
+  const authContextValue: AuthContextValue = {
+    authDetails: authState,
+    handleSignIn: authInstance.handleSignIn,
+    handleCompleteAccount: authInstance.handleCompleteAccount,
+  }; 
+
   return (
-    <AuthContext.Provider value={authState}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>
   );
 }
