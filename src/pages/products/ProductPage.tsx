@@ -48,7 +48,7 @@ export default function ProductPage() {
   return (
     <div>
       <Loader active={loading} />
-      {(error || !product) && (
+      {(error || !product) && !loading && (
         <Message negative>
           <Message.Header>Error Loading Product</Message.Header>
           <p>
