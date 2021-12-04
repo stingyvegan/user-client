@@ -6,7 +6,7 @@ import PageHeading from '../../components/PageHeading';
 import useProducts from './useProducts.hooks';
 import ProductCard from './ProductCard';
 
-function Products() {
+function ProductsPage() {
   const [products, error, loading, reload] = useProducts({ active: true });
 
   return (
@@ -50,4 +50,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default ProductsPage;

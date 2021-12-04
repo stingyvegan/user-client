@@ -8,8 +8,8 @@ import Header from './components/Header';
 
 import requiresAuthorisation from './helpers/requires-authorisation';
 import MyOrders from './pages/my_orders/MyOrders';
-import Products from './pages/products/Products';
-import Product from './pages/products/Product';
+import ProductsPage from './pages/products/ProductsPage';
+import ProductPage from './pages/products/ProductPage';
 
 function App() {
   const { authDetails } = useContext(AuthContext);
@@ -34,7 +34,7 @@ function App() {
           <Route
             path='/products'
             element={requiresAuthorisation(
-              <Products />,
+              <ProductsPage />,
               authDetails.currentAuthenticatedUser,
               'product',
               initialLoad,
@@ -43,7 +43,7 @@ function App() {
           <Route
             path='/product/:productId'
             element={requiresAuthorisation(
-              <Product />,
+              <ProductPage />,
               authDetails.currentAuthenticatedUser,
               'product',
               initialLoad,

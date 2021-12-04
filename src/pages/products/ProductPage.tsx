@@ -17,7 +17,7 @@ import AuthContext from '../../contexts/Auth.context';
 import { WriteBatchOrder } from '../../services/order.types';
 
 
-export default function Product() {
+export default function ProductPage() {
   const params = useParams();
   const [products, error, loading, reload] = useProducts({
     productId: params.productId,
