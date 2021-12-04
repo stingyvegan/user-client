@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore generated environment variables and local env file.
+public/window.env.js
+.env
