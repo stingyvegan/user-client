@@ -8,6 +8,8 @@ import Header from './components/Header';
 
 import requiresAuthorisation from './helpers/requires-authorisation';
 import MyOrders from './pages/my_orders/MyOrders';
+import Products from './pages/products/Products';
+import Product from './pages/products/Product';
 
 function App() {
   const { authDetails } = useContext(AuthContext);
@@ -29,25 +31,25 @@ function App() {
               initialLoad,
             )}
           />
+          <Route
+            path='/products'
+            element={requiresAuthorisation(
+              <Products />,
+              authDetails.currentAuthenticatedUser,
+              'product',
+              initialLoad,
+            )}
+          />
+          <Route
+            path='/product/:productId'
+            element={requiresAuthorisation(
+              <Product />,
+              authDetails.currentAuthenticatedUser,
+              'product',
+              initialLoad,
+            )}
+          />
           {/* <Route
-          path='/products'
-          element={requiresAuthorisation(
-            <Products />,
-            authDetails.currentAuthenticatedUser,
-            ['basic'],
-            initialLoad,
-          )}
-        />
-        <Route
-          path='/product/:productId'
-          element={requiresAuthorisation(
-            <Product />,
-            authDetails.currentAuthenticatedUser,
-            ['basic'],
-            initialLoad,
-          )}
-        />
-        <Route
           path='/admin'
           element={requiresAuthorisation(
             <Admin />,

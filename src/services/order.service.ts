@@ -1,5 +1,5 @@
 import getAxios from './apiAxios';
-import { Order } from './order.types';
+import { WriteBatchOrder, Order } from './order.types';
 
 async function fetchMyOrders(): Promise<Order[]> {
   const axios = await getAxios();
@@ -17,7 +17,7 @@ async function upsertOrder(
   orderId: string,
   productId: string,
   username: string,
-  batchOrders: any,
+  batchOrders: WriteBatchOrder[],
 ) {
   const axios = await getAxios();
   const result = await axios.put('/orders', {

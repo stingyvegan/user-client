@@ -5,4 +5,5 @@ module.exports = Joi.object({
   COGNITO_USER_POOL_ID: Joi.string().required(),
   COGNITO_USER_POOL_WEB_CLIENT_ID: Joi.string().required(),
   API_URI: Joi.string().required(),
+  WS_URI: Joi.string().required(),
 });

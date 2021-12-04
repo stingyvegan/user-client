@@ -3,13 +3,20 @@ export interface Batch {
   productId: string;
 }
 
-export interface BatchOrder {
+export interface ReadBatchOrder {
+  existingCommitted: number;
   committed: number;
   batch: Batch;
 }
 
 export interface Order {
   orderId: string;
-  batchOrders: BatchOrder[];
+  batchOrders: ReadBatchOrder[];
   orderDate: string;
+}
+
+export interface WriteBatchOrder {
+  existingCommitted: number;
+  committed: number;
+  batchId: string;
 }
