@@ -28,7 +28,7 @@ function ProductsPage() {
         <Card.Group centered>
           {products.map((product) => {
             return (
-              <ProductCard {...product}>
+              <ProductCard key={product.productId} {...product}>
                 <Button>View Product</Button>
               </ProductCard>
             );

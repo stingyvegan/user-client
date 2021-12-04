@@ -12,6 +12,7 @@ import MyOrders from './pages/my_orders/MyOrders';
 import ProductsPage from './pages/products/ProductsPage';
 import ProductPage from './pages/products/ProductPage';
 import AdminPage from './pages/admin/AdminPage';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 const PageContainer = styled(Container)`
   margin-top: 1rem;
@@ -66,7 +67,7 @@ function App() {
           />
           <Route path='*' element={<ProfilePage />} />
         </Routes>
-        {/* <GoogleAnalytics /> */}
+        <GoogleAnalytics />
       </PageContainer>
     </>
   );
