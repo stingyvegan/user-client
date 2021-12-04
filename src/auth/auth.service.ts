@@ -1,5 +1,5 @@
-import { Auth } from "@aws-amplify/auth";
-import { BehaviorSubject } from "rxjs";
+import { Auth } from '@aws-amplify/auth';
+import { BehaviorSubject } from 'rxjs';
 
 Auth.configure({
   region: window.env.AWS_REGION,
@@ -7,7 +7,7 @@ Auth.configure({
   userPoolWebClientId: window.env.COGNITO_USER_POOL_WEB_CLIENT_ID,
 });
 
-export type AuthState = "logged_in" | "logged_out" | "loading";
+export type AuthState = 'logged_in' | 'logged_out' | 'loading';
 
 export interface AuthDetails {
   authState: AuthState;
@@ -15,7 +15,7 @@ export interface AuthDetails {
 }
 
 export const authInitialValue: AuthDetails = {
-  authState: "loading",
+  authState: 'loading',
   currentAuthenticatedUser: undefined,
 };
 
@@ -43,19 +43,19 @@ export class AuthService {
   }
   async initialise() {
     this.handleStateChange({
-      authState: "loading",
+      authState: 'loading',
       currentAuthenticatedUser: undefined,
     });
     try {
       const currentAuthenticatedUser = await Auth.currentAuthenticatedUser();
       this.handleStateChange({
         currentAuthenticatedUser,
-        authState: "logged_in",
+        authState: 'logged_in',
       });
     } catch (err) {
-      if (err === "The user is not authenticated") {
+      if (err === 'The user is not authenticated') {
         this.handleStateChange({
-          authState: "logged_out",
+          authState: 'logged_out',
           currentAuthenticatedUser: undefined,
         });
       } else {

@@ -1,11 +1,11 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import {
   AuthService,
   AuthDetails,
   authInitialValue,
-} from "../auth/auth.service";
-import AuthContext from "../contexts/Auth.context";
+} from '../auth/auth.service';
+import AuthContext from '../contexts/Auth.context';
 
 export type AuthContextProviderProps = PropsWithChildren<{
   authInstance: AuthService;
