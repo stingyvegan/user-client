@@ -17,7 +17,7 @@ import {
   formatIndividualUnit,
   formatUnitSize,
 } from '../../helpers/formatters';
-import { updateBatches } from '../../helpers/order-helpers';
+import { updateBatches } from '../../helpers/order_helpers';
 import ConfirmOrderModal from './ConfirmOrderModal';
 import { batchMessage } from './products.constants';
 import { Product } from '../../services/product.types';
