@@ -1,6 +1,10 @@
 import { DockerCRABaseEnvType } from 'docker-cra';
 
-interface IEnvValues extends DockerCRABaseEnvType {}
+interface IEnvValues extends DockerCRABaseEnvType {
+  AWS_REGION: string;
+  COGNITO_USER_POOL_ID: string;
+  COGNITO_USER_POOL_WEB_CLIENT_ID: string;
+}
 
 export declare global {
   interface Window {
