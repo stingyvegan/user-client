@@ -9,7 +9,7 @@ import { canAccess } from '../rbac';
 type LoginMenuItemProps = {
   handleLogout: () => void;
   authState: AuthState;
-  name: string;
+  name?: string;
 };
 function LoginMenuItem({ authState, name, handleLogout }: LoginMenuItemProps) {
   if (authState === 'logged_in') {
@@ -61,7 +61,7 @@ function Header({ loading }: HeaderProps) {
       {!loading && (
         <LoginMenuItem
           handleLogout={handleLogout}
-          name={authDetails!.currentAuthenticatedUser!.name}
+          name={authDetails?.currentAuthenticatedUser?.name}
           authState={authDetails.authState}
         />
       )}
