@@ -23,12 +23,20 @@ jobs:
           paths:
             - build/*
             - env.schema.js
+            - Dockerfile
+            - .dockerignore
 
   publish:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Verify
+          command: |
+            pwd
+            ls -l
       - run:
           name: Setup Environment Variables
           command: |
@@ -52,7 +60,8 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Setup Environment Variables
           command: |
