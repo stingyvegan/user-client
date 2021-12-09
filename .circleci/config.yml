@@ -33,11 +33,6 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Verify
-          command: |
-            pwd
-            ls -l
-      - run:
           name: Setup Environment Variables
           command: |
             REGISTRY=$DOCKER_REGISTRY_URL/stingyvegan/user-client
