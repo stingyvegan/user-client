@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Table, Loader, Message, Button } from 'semantic-ui-react';
 
-import { formatCurrency } from '../../helpers/formatters';
+import { formatCurrency, formatDate } from '../../helpers/formatters';
 import shortenUuid from '../../helpers/shortenUuid';
 import PageHeading from '../../components/PageHeading';
 import useOrders from '../my_orders/useOrders.hooks';
@@ -34,6 +34,7 @@ function AdminPage() {
         <Table celled unstackable>
           <Table.Header>
             <Table.Row>
+              <Table.HeaderCell>Date</Table.HeaderCell>
               <Table.HeaderCell>Order ID</Table.HeaderCell>
               <Table.HeaderCell>Batch ID</Table.HeaderCell>
               <Table.HeaderCell>User</Table.HeaderCell>
@@ -51,6 +52,7 @@ function AdminPage() {
                 );
                 return (
                   <Table.Row key={`${order.orderId}_${bo.batch.batchId}`}>
+                    <Table.Cell>{formatDate(order.orderDate)}</Table.Cell>
                     <Table.Cell>{shortenUuid(order.orderId)}</Table.Cell>
                     <Table.Cell>{shortenUuid(bo.batch.batchId)}</Table.Cell>
                     <Table.Cell>{order.username}</Table.Cell>
