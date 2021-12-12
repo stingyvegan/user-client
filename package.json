@@ -1,6 +1,6 @@
 {
   "name": "user-client",
-  "version": "0.2.0",
+  "version": "0.3.0-beta.0",
   "private": true,
   "dependencies": {
     "@aws-amplify/auth": "^4.3.18",
