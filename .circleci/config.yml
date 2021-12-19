@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:16
     steps:
@@ -25,6 +25,34 @@ jobs:
             - env.schema.js
             - Dockerfile
             - .dockerignore
+
+  publish-helm:
+    docker:
+      - image: hypnoglow/helm-s3:master-helm3.4
+    shell: /bin/sh -leo pipefail
+    environment:
+      - BASH_ENV: /etc/profile
+    steps:
+      - checkout
+      - run:
+          name: Setup Environment Variables
+          command: |
+            TAG="${CIRCLE_TAG:1}"
+            echo $TAG
+            echo "export TAG=$TAG" >> $BASH_ENV
+      - run:
+          name: Add Repo
+          command: |
+            helm repo add stingyvegan-helm s3://helm.stingyvegan.com
+            helm repo list
+      - run:
+          name: Package Chart
+          command: |
+            helm package ./helm --version=$TAG --app-version=$TAG
+      - run:
+          name: Publish Chart
+          command: |
+            helm s3 push ./sv-user-client-$TAG.tgz stingyvegan-helm
 
   publish:
     machine:
@@ -82,14 +110,14 @@ workflows:
   version: 2
   ci:
     jobs:
-      - build:
+      - test:
           filters:
             tags:
               only: /.*/
 
       - publish:
           requires:
-            - build
+            - test
           filters:
             tags:
               only: /v([0-9])*.([0-9])*.([0-9])*-.*/
@@ -99,10 +127,20 @@ workflows:
 
       - publish-latest:
           requires:
-            - build
+            - test
           filters:
             tags:
               only: /v([0-9])*.([0-9])*.([0-9])*/
             branches:
               ignore: /.*/
           context: stingyvegan-github
+
+      - publish-helm:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /v([0-9])*.([0-9])*.([0-9])*.*/
+            branches:
+              ignore: /.*/
+          context: s3-helm-deploy
