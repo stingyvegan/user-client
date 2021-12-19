@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  progressDeadlineSeconds: 60
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: user-client
+          image: {{ .Values.client.registry }}:{{ .Values.client.version }}
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 50m
+              memory: 300Mi
+          ports:
+            - name: http-web
+              containerPort: 80
+          env:
+            - name: REACT_APP_CLIENT_VERSION
+              value: {{ .Values.client.version | quote }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-client-config-map
+      initContainers:
+        - name: init-dns
+          image: curlimages/curl
+          command: ["sh", "-c", "until nslookup google.com; do echo waiting for goo dns; sleep 2; done"]
+      imagePullSecrets:
+        - name: {{ .Values.docker.registrySecretName }}

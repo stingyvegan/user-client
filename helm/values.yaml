@@ -1,0 +1,16 @@
+cognito:
+  region: ap-southeast-2
+  userPoolId: ap-southeast-2_zoRQDzN1a
+  userPoolWebClientId: 776sok3fkftpnvab93d4clk5d7
+
+api:
+  host: api.stingyvegan.com.au
+  prefix: /api
+
+client:
+  registry: ghcr.io/stingyvegan/user-client
+  version: v0.3.0
+  googleAnalyticsId: UA-133927969-1
+
+docker:
+  registrySecretName: registry-github-stingyvegan
