@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Add Repo
           command: |
-            helm repo add stingyvegan-helm s3://helm.stingyvegan.com
+            helm repo add stingyvegan-s3 s3://helm.stingyvegan.com
             helm repo list
       - run:
           name: Package Chart
@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Publish Chart
           command: |
-            helm s3 push ./sv-user-client-$TAG.tgz stingyvegan-helm
+            helm s3 push --relative ./sv-user-client-$TAG.tgz stingyvegan-s3
 
   publish:
     machine:
