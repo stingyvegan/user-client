@@ -7,6 +7,6 @@ data:
   AWS_REGION: {{ .Values.cognito.region | quote }}
   COGNITO_USER_POOL_ID: {{ .Values.cognito.userPoolId | quote }}
   COGNITO_USER_POOL_WEB_CLIENT_ID: {{ .Values.cognito.userPoolWebClientId | quote }}
-  API_URI: https://{{ .Values.api.host }}{{ .Values.api.prefix }}
-  WS_URI: wss://{{ .Values.api.host }}{{ .Values.api.prefix }}
-  GOOGLE_ANALYTICS_ID: {{ .Values.client.googleAnalyticsId }}
+  API_URI: {{ .Values.env.apiUri }}
+  WS_URI: {{ .Values.env.wsUri }}
+  GOOGLE_ANALYTICS_ID: {{ .Values.env.googleAnalyticsId }}

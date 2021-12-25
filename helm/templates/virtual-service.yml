@@ -4,9 +4,9 @@ metadata:
   name: {{ .Release.Name }}-client-virtual-service
 spec:
   hosts:
-    - {{ .Values.api.host }}
+    - {{ .Values.env.host }}
   gateways:
-    - {{ .Release.Name }}-gateway
+    - {{ .Values.gateway.include | ternary (print .Release.Name "-gateway") .Values.gateway.name }}
   http:
     - match:
         - uri:

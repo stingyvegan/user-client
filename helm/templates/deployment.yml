@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: user-client
-          image: {{ .Values.client.registry }}:{{ .Values.client.version }}
+          image: {{ .Values.image.registry }}:{{ .Values.image.version }}
           imagePullPolicy: Always
           resources:
             limits:
@@ -29,7 +29,7 @@ spec:
               containerPort: 80
           env:
             - name: REACT_APP_CLIENT_VERSION
-              value: {{ .Values.client.version | quote }}
+              value: {{ .Values.image.version | quote }}
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-client-config-map
@@ -38,4 +38,4 @@ spec:
           image: curlimages/curl
           command: ["sh", "-c", "until nslookup google.com; do echo waiting for goo dns; sleep 2; done"]
       imagePullSecrets:
-        - name: {{ .Values.docker.registrySecretName }}
+        - name: {{ .Values.image.registrySecretName }}

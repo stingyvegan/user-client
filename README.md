@@ -46,14 +46,18 @@ Requirements
 The helm chart expects a secret to have been created in the target namespace with the provided credentials to pull the stingyvegan containers. See example of the command to create the secret below.
 
 ```
-kubectl create secret docker-registry registry-github-stingyvegan --docker-server=ghcr.io --docker-username=danielemery --docker-password=REPLACE_ME --docker-email="danielremery@gmail.com" -n stingyvegan
+kubectl -n stingyvegan create secret docker-registry registry-github-stingyvegan --docker-server=ghcr.io --docker-username=danielemery --docker-password=REPLACE_ME
 ```
 
 ### Using "official" Helm repository
 
 ```sh
+# Add repo if not already added
 helm repo add stingyvegan https://helm.stingyvegan.com
+# Install chart to `stingyvegan` namespace
 helm install -n stingyvegan user-client stingyvegan/sv-user-client
+# Uninstall chart
+helm uninstall -n stingyvegan user-client
 ```
 
 ### Testing
