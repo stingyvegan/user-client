@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-client
   labels:
-    app: {{ .Release.Name }}
+    app: {{ .Release.Name }}-client
 spec:
   progressDeadlineSeconds: 60
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Release.Name }}-client
   replicas: 1
   revisionHistoryLimit: 2
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Release.Name }}-client
     spec:
       containers:
         - name: user-client

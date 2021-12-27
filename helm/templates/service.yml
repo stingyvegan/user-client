@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-client-svc
 spec:
   selector:
-    app: {{ .Release.Name }}
+    app: {{ .Release.Name }}-client
   ports:
     - port: 80
       name: http-web

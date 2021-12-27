@@ -6,7 +6,7 @@ spec:
   hosts:
     - {{ .Values.env.host }}
   gateways:
-    - {{ .Values.gateway.include | ternary (print .Release.Name "-gateway") .Values.gateway.name }}
+    - {{ .Values.gateway.include | ternary (print .Release.Name "-client-gateway") .Values.gateway.name }}
   http:
     - match:
         - uri:
