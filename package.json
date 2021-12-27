@@ -1,6 +1,6 @@
 {
   "name": "user-client",
-  "version": "0.3.2-helm-improvements.0",
+  "version": "0.3.2-helm-improvements.1",
   "private": true,
   "dependencies": {
     "@aws-amplify/auth": "^4.3.18",
