@@ -15,5 +15,5 @@ image:
   registrySecretName: registry-github-stingyvegan
 
 gateway:
-  include: false
-  name: external-gateway
+  include: true
+  # name: external-gateway # Provide only if include is false

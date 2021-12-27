@@ -55,18 +55,18 @@ kubectl -n stingyvegan create secret docker-registry registry-github-stingyvegan
 # Add repo if not already added
 helm repo add stingyvegan https://helm.stingyvegan.com
 # Install chart to `stingyvegan` namespace
-helm install -n stingyvegan user-client stingyvegan/sv-user-client
+helm install -n stingyvegan sv-user-client stingyvegan/sv-user-client
 # Uninstall chart
-helm uninstall -n stingyvegan user-client
+helm uninstall -n stingyvegan sv-user-client
 ```
 
 ### Testing
 
 ```sh
 # Install using local chart
-helm install -n stingyvegan stingyvegan ./helm
+helm install -n stingyvegan sv-user-client ./helm
 # Uninstall
-helm uninstall -n stingyvegan stingyvegan
+helm uninstall -n stingyvegan sv-user-client
 ```
 
 ## Notes
