@@ -23,7 +23,7 @@ spec:
           resources:
             limits:
               cpu: 50m
-              memory: 300Mi
+              memory: 80Mi
           ports:
             - name: http-web
               containerPort: 80
@@ -32,10 +32,6 @@ spec:
               value: {{ .Values.client.version | quote }}
           envFrom:
             - configMapRef:
-                name: {{ .Release.Name }}-client-config-map
-      initContainers:
-        - name: init-dns
-          image: curlimages/curl
-          command: ["sh", "-c", "until nslookup google.com; do echo waiting for goo dns; sleep 2; done"]
+                name: {{ .Release.Name }}-configmap
       imagePullSecrets:
         - name: {{ .Values.docker.registrySecretName }}

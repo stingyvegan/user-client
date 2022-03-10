@@ -53,7 +53,7 @@ kubectl create secret docker-registry registry-github-stingyvegan --docker-serve
 
 ```sh
 helm repo add stingyvegan https://helm.stingyvegan.com
-helm install -n stingyvegan user-client stingyvegan/sv-user-client
+helm install -n stingyvegan user-client stingyvegan/sv-user-client -f ./helm/values.yaml
 ```
 
 ### Testing

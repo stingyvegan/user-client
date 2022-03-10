@@ -4,7 +4,7 @@ cognito:
   userPoolWebClientId: 776sok3fkftpnvab93d4clk5d7
 
 api:
-  host: api.stingyvegan.com.au
+  host: api.stingyvegan.com
   prefix: /api
 
 client:

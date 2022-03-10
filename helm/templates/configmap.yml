@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-client-config-map
+  name: {{ .Release.Name }}-configmap
 data:
   PUBLIC_URL: "/"
   AWS_REGION: {{ .Values.cognito.region | quote }}
