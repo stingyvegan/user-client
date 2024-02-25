@@ -41,14 +41,6 @@ Requirements
 - Istio installed and enabled on the namespace
 - Docker registry created in namespace (see below)
 
-### Create required secret
-
-The helm chart expects a secret to have been created in the target namespace with the provided credentials to pull the stingyvegan containers. See example of the command to create the secret below.
-
-```
-kubectl create secret docker-registry registry-github-stingyvegan --docker-server=ghcr.io --docker-username=danielemery --docker-password=REPLACE_ME --docker-email="danielremery@gmail.com" -n stingyvegan
-```
-
 ### Using "official" Helm repository
 
 ```sh
