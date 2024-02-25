@@ -9,8 +9,5 @@ api:
 
 client:
   registry: ghcr.io/stingyvegan/user-client
-  version: v0.3.2
+  version: v0.3.3
   googleAnalyticsId: UA-133927969-1
-
-docker:
-  registrySecretName: registry-github-stingyvegan
