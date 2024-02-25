@@ -1,6 +1,6 @@
 {
   "name": "user-client",
-  "version": "0.3.3-github-actions.1",
+  "version": "0.3.3",
   "private": true,
   "dependencies": {
     "@aws-amplify/auth": "^4.3.18",
