@@ -31,5 +31,5 @@ spec:
             - name: REACT_APP_CLIENT_VERSION
               value: {{ .Values.client.version | quote }}
           envFrom:
-            - configMapRef:
-                name: {{ .Release.Name }}-configmap
+            - secretRef:
+                name: {{ .Values.client.secretName }}
